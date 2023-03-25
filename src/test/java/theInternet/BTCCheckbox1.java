@@ -41,6 +41,8 @@ public class BTCCheckbox1 {
 
 //        Assert.assertTrue(checkbox2.isSelected());
         sleepInSecond(5);
+        System.out.println("test");
+
     }
 
 
