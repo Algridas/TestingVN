@@ -1,0 +1,11 @@
+<suite name="Example">
+    <test name="demo">
+        <classes>
+            <class name="theInternet.exampletest">
+                <methods>
+                    <include name="tc1"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
