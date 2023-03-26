@@ -1,4 +1,4 @@
-package theInternet;
+package theAssignment;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
@@ -19,7 +19,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-public class VFF {
+public class theTest {
 
 
     WebDriver driver;
@@ -262,7 +262,7 @@ public class VFF {
         wait.until(ExpectedConditions.stalenessOf(buttonElement));
 
 
-
+        sleepInSecond(5);
         Actions actions = new Actions(driver);
         actions
                 .moveToElement(driver.findElement(By.xpath("//span[@class='txt-area']")))

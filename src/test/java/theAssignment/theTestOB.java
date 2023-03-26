@@ -1,4 +1,4 @@
-package theInternet;
+package theAssignment;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
@@ -19,10 +19,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-public class VFF {
+import pages.VNExpress;
+
+public class theTestOB {
 
 
-    WebDriver driver;
+   static WebDriver driver = null;
 
     @BeforeClass
     public void beforeClass(){
@@ -236,10 +238,10 @@ public class VFF {
     @Test
     void NavClick(){
 
-        By logoXpath = By.xpath("//header[@class='section top-header']//a[@class='logo']");
+//        By logoXpath = By.xpath("//header[@class='section top-header']//a[@class='logo']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        WebElement logoElement = wait.until(ExpectedConditions.elementToBeClickable(logoXpath));
+        WebElement logoElement = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.logoXpath(driver)));
         logoElement.click();
 
         wait.until(ExpectedConditions.urlToBe("https://vnexpress.net/"));
@@ -248,10 +250,10 @@ public class VFF {
 
 
 
-        By buttonXpath = By.xpath("//header[@class='section top-header']//a[@class='btn24hqua ']");
+//        By buttonXpath = By.xpath("//header[@class='section top-header']//a[@class='btn24hqua ']");
 //        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
-
-        WebElement buttonElement = wait.until(ExpectedConditions.elementToBeClickable(buttonXpath));
+        sleepInSecond(5);
+        WebElement buttonElement = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.buttonXpath(driver)));
         buttonElement.click();
 
         wait.until(ExpectedConditions.urlToBe("https://vnexpress.net/tin-tuc-24h"));
@@ -262,7 +264,7 @@ public class VFF {
         wait.until(ExpectedConditions.stalenessOf(buttonElement));
 
 
-
+        sleepInSecond(5);
         Actions actions = new Actions(driver);
         actions
                 .moveToElement(driver.findElement(By.xpath("//span[@class='txt-area']")))
@@ -270,10 +272,10 @@ public class VFF {
 
 
 
-        By linkXpath = By.xpath("//a[@data-medium='Item-TinKhuVuc_HaNoi']");
+//        By linkXpath = By.xpath("//a[@data-medium='Item-TinKhuVuc_HaNoi']");
 //        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        WebElement linkElement = wait.until(ExpectedConditions.elementToBeClickable(linkXpath));
+        WebElement linkElement = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.linkXpath(driver)));
         linkElement.click();
 
         wait.until(ExpectedConditions.urlToBe("https://vnexpress.net/topic/ha-noi-26482"));
@@ -281,16 +283,16 @@ public class VFF {
         driver.navigate().back();
 
 
-
+        sleepInSecond(5);
         Actions actions1 = new Actions(driver);
         actions1
                 .moveToElement(driver.findElement(By.xpath("//span[@class='txt-area']")))
                 .perform();
 
-        By linkXpath1 = By.xpath("//a[@data-medium='Item-TinKhuVuc_TPHoChiMinh']");
+//        By linkXpath1 = By.xpath("//a[@data-medium='Item-TinKhuVuc_TPHoChiMinh']");
 //        WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        WebElement linkElement1 = wait.until(ExpectedConditions.elementToBeClickable(linkXpath1));
+        WebElement linkElement1 = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.linkXpath1(driver)));
         linkElement1.click();
 
         wait.until(ExpectedConditions.urlToBe("https://vnexpress.net/topic/tp-ho-chi-minh-26483"));
@@ -298,10 +300,10 @@ public class VFF {
         driver.navigate().back();
 
 
-        By Inter = By.xpath("//a[@class='evne']");
+//        By Inter = By.xpath("//a[@class='evne']");
 //        WebDriverWait wait4 = new WebDriverWait(driver, Duration.ofSeconds(30));
-
-        WebElement InterElement = wait.until(ExpectedConditions.elementToBeClickable(Inter));
+        sleepInSecond(5);
+        WebElement InterElement = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.Inter(driver)));
         InterElement.click();
 
         wait.until(ExpectedConditions.urlToBe("https://e.vnexpress.net/"));
@@ -309,22 +311,25 @@ public class VFF {
         driver.navigate().back();
 
 
-        By input = By.xpath("//input[@id='keywordHeader']");
-        By button = By.xpath("//button[@type='submit']");
+//        By input = By.xpath("//input[@id='keywordHeader']");
+//        By button = By.xpath("//button[@type='submit']");
 
 
-        WebElement inputElement = wait.until(ExpectedConditions.elementToBeClickable(input));
+        WebElement inputElement = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.textbox_search(driver)));
         inputElement.sendKeys("Gruzia");
 
-        WebElement thebuttonElement = wait.until(ExpectedConditions.elementToBeClickable(button));
+//        VNExpress.textbox_search(driver)
+
+
+        WebElement thebuttonElement = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.button_search(driver)));
         thebuttonElement.click();
         String originalWindow = driver.getWindowHandle();
         sleepInSecond(5);
         driver.switchTo().window(originalWindow);
 
 
-        By Login = By.xpath("//a[@class='log_txt myvne_login_button']");
-        WebElement LoginElement = wait.until(ExpectedConditions.elementToBeClickable(Login));
+//        By Login = By.xpath("//a[@class='log_txt myvne_login_button']");
+        WebElement LoginElement = wait.until(ExpectedConditions.elementToBeClickable(VNExpress.Login(driver)));
         LoginElement.click();
 
         // Wait for the login pop-up iframe to load
@@ -332,8 +337,8 @@ public class VFF {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.className("iframe_guest")));
 
 // Find the username field using its XPath and enter the username
-        WebElement usernameField = driver.findElement(By.xpath("//input[@class='input_form has_transition']"));
-        usernameField.sendKeys("leetaekyung1997@gmail.com");
+//        WebElement usernameField = driver.findElement(By.xpath("//input[@class='input_form has_transition']"));
+        VNExpress.usernameField(driver).sendKeys("leetaekyung1997@gmail.com");
 
 // Enter the password in the password field (assuming the password field has a different XPath)
         WebElement passwordField = driver.findElement(By.xpath("//input[@class='input_form has_transition input_pass']"));
@@ -346,7 +351,7 @@ public class VFF {
         driver.switchTo().defaultContent();
 
 
-        sleepInSecond(5);
+        sleepInSecond(7);
 
         driver.findElement(By.xpath("//div[@class='box-area-input width_common']//textarea[@id='txtComment']")).sendKeys("hello");
         driver.findElement(By.xpath("//div[@class='right block_btn_send']//button[@type='button']")).click();

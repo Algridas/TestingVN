@@ -26,6 +26,7 @@ public class BTTC {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 //		driver.get("https://alada.vn/");
+        System.out.println("test");
 
     }
 
